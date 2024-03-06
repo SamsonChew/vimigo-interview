@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:share/share.dart';
@@ -13,6 +15,14 @@ class AttendanceDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Formatting the date time to show in "dd MMM yyyy, h:mm a" format.
     final formattedTime = DateFormat('dd MMM yyyy, h:mm a').format(record.time);
+
+    void shareContactDetails() {
+      final String content = 'Name: ${record.name}\n'
+          'Contact Info: ${record.contactInfo}\n'
+          'Time: $formattedTime';
+      Share.share(content);
+      window.alert('contact details is : '
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -30,12 +40,7 @@ class AttendanceDetailsScreen extends StatelessWidget {
             Text('Time: $formattedTime', style: TextStyle(fontSize: 18)),
             SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () {
-                final String content = 'Name: ${record.name}\n'
-                    'Contact Info: ${record.contactInfo}\n'
-                    'Time: $formattedTime';
-                Share.share(content);
-              },
+              onPressed: shareContactDetails,
               child: Text('Share'),
             ),
           ],
