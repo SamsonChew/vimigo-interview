@@ -21,7 +21,6 @@ class AttendanceDetailsScreen extends StatelessWidget {
           'Contact Info: ${record.contactInfo}\n'
           'Time: $formattedTime';
       Share.share(content);
-      window.alert('contact details is : '
     }
 
     return Scaffold(
